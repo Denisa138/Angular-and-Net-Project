@@ -1,0 +1,51 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-user-register',
+  templateUrl: './user-register.component.html',
+  styleUrls: ['./user-register.component.css']
+})
+export class UserRegisterComponent implements OnInit {
+  registerationForm!: FormGroup;
+  constructor() { }
+
+  ngOnInit() {
+    this.registerationForm = new FormGroup({
+      userName: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
+      confirmPassword: new FormControl(null, [Validators.required, Validators.minLength(8)]),
+      mobile: new FormControl(null, [Validators.required, Validators.minLength(10)])
+    }, this.passwordMatchingValidator(this.registerationForm))
+  }
+
+  passwordMatchingValidator(fg: FormGroup): Validators{
+    return fg.get('password')!.value === fg.get('confirmPassword')!.value ? null as any : {notMatched: true};
+  }
+
+  get userName(){
+    return this.registerationForm.get('userName') as FormControl;
+  }
+
+  get email(){
+    return this.registerationForm.get('email') as FormControl;
+  }
+
+  get password(){
+    return this.registerationForm.get('password') as FormControl;
+  }
+
+  get confirmedPassword(){
+    return this.registerationForm.get('confirmedPassword') as FormControl;
+  }
+
+  get mobile(){
+    return this.registerationForm.get('mobile') as FormControl;
+  }
+
+  onSubmit(){
+    console.log(this.registerationForm);
+  }
+
+}

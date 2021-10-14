@@ -1,0 +1,26 @@
+[
+  {
+  "Id":1,
+  "Name": "Village house",
+  "Type": "Villa",
+  "Price": 1000,
+  "SellRent": 1,
+  "Image": "house"
+  },
+  {
+    "Id":2,
+    "Name": "Maria's House",
+    "Type": "motel",
+    "Price": 1000,
+    "SellRent": 2,
+    "Image": "motel"
+  },
+  {
+    "Id":3,
+    "Name": "Denisa's Hotel",
+    "Type": "hotel",
+    "Price": 1000,
+    "SellRent": 1,
+    "Image": "hotel"
+  }
+]
