@@ -12,6 +12,11 @@ export class AddPropertyComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    //error cause form control is not instanciate here
+    // this.addPropertyForm.controls['Name'].setValue('Default Value');
+    setTimeout(() =>{
+      this.addPropertyForm.controls['Name'].setValue('Default Value');
+    })
   }
 
   onBack(){
