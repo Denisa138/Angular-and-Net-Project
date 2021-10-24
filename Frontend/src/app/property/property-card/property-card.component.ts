@@ -8,10 +8,4 @@ import { IProperty } from "../IProperty.interface";
 })
 export class PropertyCardComponent{
   @Input() property!: IProperty;
-
-  // Property: any = {
-  //   "Id":1,
-  //   "Type": "House",
-  //   "Price": 1000
-  // }
 }
