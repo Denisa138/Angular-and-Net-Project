@@ -1,22 +1,21 @@
 <!-- <p>
   add-property works!
-  <button (click)="onBack()" class="btn btn-primary">Back</button>
+  <button (click)="onBack()" class="btn btn-outline-secondary">Back</button>
 </p> -->
 <div class="row mb-5">
-<div class="col-8">
+<div class="col-8 shadow-lg p-0 bg-white">
 <div class="card">
   <div class="card-header">
     <h3>List your Property</h3>
   </div>
   <div class="card-body">
     <form (ngSubmit)='onSubmit()' #Form="ngForm">
-      <div>
-        <tabset #formTabs>
-
-          <tab heading="Basic Info">
+      <div class="tab-panel">
+        <tabset class="member-tabset" #formTabs>
+          <tab heading="Basic Info" ngModelGroup="BasicInfo" #BasicInfo="ngModelGroup">
             <div class="form-group col-12">
               <p>I want to</p>
-              <div class="btn-group" btnRadioGroup>
+              <div class="btn-group" btnRadioGroup ngModel name="SellRent" required>
                 <label class="btn btn-outline-primary m-1" btnRadio=1 role="button" name="SellRent">Sell</label>
                 <label class="btn btn-outline-primary m-1" btnRadio=2 role="button" name="SellRent">Rent</label>
               </div>
@@ -24,20 +23,20 @@
 
             <div class="form-group col-12">
               <p>BHK</p>
-              <div class="btn-group" btnRadioGroup>
+              <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.BHK" name="BHK">
                 <label *ngFor="let bhk of [1,2,3,4]" tabindex="0" class="btn btn-outline-primary m-1" [btnRadio]=$any(bhk)  role="button" name="BHK">{{bhk}}</label>
               </div>
             </div>
             <div class="form-group col-12">
               <p>Property Type</p>
-              <div class="btn-group" btnRadioGroup name='propType' [(ngModel)]="propertyView.Type">
+              <div class="btn-group" btnRadioGroup name='propType' [(ngModel)]="propertyView.PType">
                 <label *ngFor="let property of propertyTypes" class="btn btn-outline-primary m-1" [btnRadio]="property" tabindex="0"
                 role="button" name="PropertyTypes">{{property}}</label>
               </div>
             </div>
             <div class="form-group col-12">
               <p>Furnish Type</p>
-              <div class="btn-group" btnRadioGroup>
+              <div class="btn-group" btnRadioGroup [(ngModel)]="propertyView.FType" name="FType">
                 <label *ngFor="let furnish of furnishType" class="btn btn-outline-primary m-1" [btnRadio]="furnish" tabindex="0"
                 role="button" name="PropertyTypes">{{furnish}}</label>
               </div>
@@ -53,16 +52,17 @@
             </div>
             <div class="form-group col-12">
               <label for="city">City</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="City" [(ngModel)]="propertyView.City">
             </div>
             <div class="form-group col-12">
-              <button type="button" class="btn btn-primary col-12 mb-2" (click)="selectTab(1)">Next</button>
+              <button type="button" class="btn btn-outline-secondary col-12 mb-2" (click)="selectTab(1)"
+              [disabled]="!BasicInfo.valid">Next</button>
             </div>
           </tab>
           <tab heading="Pricing and Area">Pricing Information
             <div class="form-group col-12">
               <label>Price (in USD)</label>
-              <input type="text" class="form-control" name="price" [(ngModel)]="propertyView.Price">
+              <input type="text" class="form-control" name="Price" [(ngModel)]="propertyView.Price">
             </div>
             <div class="form-group col-12">
               <label>Security (in USD)</label>
@@ -74,15 +74,15 @@
             </div>
             <div class="form-group col-12">
               <label>Built Area (in Sqr Feet)</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="BuiltArea" [(ngModel)]="propertyView.BuiltArea">
             </div>
             <div class="form-group col-12">
               <label>Carpet Area (in Sqr Feet)</label>
               <input type="text" class="form-control">
             </div>
             <div class="form-control col-12">
-              <button type="button" class="btn btn-primary col-12 mb-2" (click)="selectTab(2)">Next</button>
-              <button type="button" class="btn btn-primary col-12" (click)="selectTab(0)">Back</button>
+              <button type="button" class="btn btn-outline-secondary col-12 mb-2" (click)="selectTab(2)">Next</button>
+              <button type="button" class="btn btn-outline-secondary col-12" (click)="selectTab(0)">Back</button>
             </div>
           </tab>
           <tab heading="Address">Address
@@ -103,8 +103,8 @@
               <input type="text" class="form-control">
             </div>
             <div class="form-control col-12">
-              <button type="button" class="btn btn-primary col-12 mb-2" (click)="selectTab(3)">Next</button>
-              <button type="button" class="btn btn-primary col-12" (click)="selectTab(1)">Back</button>
+              <button type="button" class="btn btn-outline-secondary col-12 mb-2" (click)="selectTab(3)">Next</button>
+              <button type="button" class="btn btn-outline-secondary col-12" (click)="selectTab(1)">Back</button>
             </div>
           </tab>
           <tab heading="Other Details">Other Details
@@ -147,8 +147,8 @@
               <textarea type="text" class="form-control" rows="6"></textarea>
             </div>
             <div class="form-control col-12">
-              <button type="button" class="btn btn-primary col-12 mb-2" (click)="selectTab(4)">Next</button>
-              <button type="button" class="btn btn-primary col-12" (click)="selectTab(2)">Back</button>
+              <button type="button" class="btn btn-outline-secondary col-12 mb-2" (click)="selectTab(4)">Next</button>
+              <button type="button" class="btn btn-outline-secondary col-12" (click)="selectTab(2)">Back</button>
             </div>
           </tab>
           <tab heading="Photos">Upload photos
@@ -159,9 +159,9 @@
               </div>
             </div>
             <div class="form-control col-12">
-              <button type="button" class="btn btn-primary col-12 mb-2" (click)="selectTab(3)">Back</button>
-              <button type="submit" class="btn btn-primary col-12 mb-2">Save</button>
-              <button type="reset" class="btn btn-primary col-12 mb-2">Cancel</button>
+              <button type="button" class="btn btn-outline-secondary col-12 mb-2" (click)="selectTab(3)">Back</button>
+              <button type="submit" class="btn btn-outline-secondary col-12 mb-2">Save</button>
+              <button type="reset" class="btn btn-outline-secondary col-12 mb-2">Cancel</button>
             </div>
           </tab>
         </tabset>
@@ -173,9 +173,10 @@
 <div class="col-4">
   <div class="card-header">
     <h3>Your Property Preview</h3>
-    <div>
-      <app-property-card [property]=$any(propertyView)></app-property-card>
-    </div>
   </div>
+    <div class="shadow-lg p-3 bg-white">
+      <app-property-card [property]=$any(propertyView) [hideIcons]="true"></app-property-card>
+    </div>
+
 </div>
 </div>

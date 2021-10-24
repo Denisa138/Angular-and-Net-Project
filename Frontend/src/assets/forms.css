@@ -1,6 +1,6 @@
-.ng-invalid.ng-touched{
+/* .ng-invalid.ng-touched{
   color:red;
-}
+} */
 
 .error-block{
   color: red;
@@ -10,4 +10,14 @@
   border-radius: 44px; /*radio shape to btn*/
   padding: 0 15px;
   line-height: 30px;
+}
+
+.card-header > h1, .card-header > h2, .card-header > h3{
+  color:white
+}
+
+.card-header{
+  height: 42px;
+  padding: 4px 10px !important;
+  background-color:rgba(41, 151, 165, 0.541) !important;
 }
